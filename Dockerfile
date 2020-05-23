@@ -10,7 +10,7 @@ FROM alpine:edge
 
 COPY --from=builder /tmp/exploitdb /exploitdb
 
-RUN apk add --no-cache --update bash ncurses && \
+RUN apk add --no-cache --update bash ncurses file && \
     rm -rf /tmp/* /var/cache/apk/* && \
     sed 's|path_array+=(.*)|path_array+=("/exploitdb")|g' /exploitdb/.searchsploit_rc > ~/.searchsploit_rc
 
